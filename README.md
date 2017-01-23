@@ -7,3 +7,10 @@
 
 # How to use this extension!
 * currently not described
+
+
+# How to develop extensions
+* Libraries:
+    * Bukkit/Spigot-API
+    * Quantum-Connectors main plugin (later only the API)
+    
