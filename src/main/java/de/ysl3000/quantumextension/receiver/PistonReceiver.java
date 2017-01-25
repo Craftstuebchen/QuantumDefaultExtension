@@ -1,7 +1,7 @@
 package de.ysl3000.quantumextension.receiver;
 
-import com.ne0nx3r0.quantum.api.receiver.AbstractKeepAliveReceiver;
-import com.ne0nx3r0.quantum.api.util.ValidMaterials;
+import de.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
+import de.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

@@ -1,7 +1,7 @@
 package de.ysl3000.quantumextension;
 
-import com.ne0nx3r0.quantum.api.IQuantumConnectorsAPI;
-import com.ne0nx3r0.quantum.api.QuantumExtension;
+import de.ysl3000.quantum.api.IQuantumConnectorsAPI;
+import de.ysl3000.quantum.api.QuantumExtension;
 import de.ysl3000.quantumextension.circuit.*;
 import de.ysl3000.quantumextension.receiver.*;
 

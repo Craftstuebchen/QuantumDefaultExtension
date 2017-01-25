@@ -7,7 +7,10 @@
     <groupId>de.ysl3000</groupId>
     <artifactId>QuantumDefaultExtension</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
     <build>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -33,7 +36,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.ne0nx3r0.quantum</groupId>
+            <groupId>de.ysl3000</groupId>
             <artifactId>QuantumAPI</artifactId>
             <version>3.0</version>
             <scope>provided</scope>

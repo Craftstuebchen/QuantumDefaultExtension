@@ -1,9 +1,10 @@
 package de.ysl3000.quantumextension.circuit;
 
-import com.ne0nx3r0.quantum.api.circuit.AbstractCircuit;
-import com.ne0nx3r0.quantum.api.receiver.Receiver;
-import com.ne0nx3r0.quantum.api.receiver.ReceiverNotValidException;
-import com.ne0nx3r0.quantum.api.receiver.ValueNotChangedException;
+
+import de.ysl3000.quantum.api.circuit.AbstractCircuit;
+import de.ysl3000.quantum.api.receiver.Receiver;
+import de.ysl3000.quantum.api.receiver.ReceiverNotValidException;
+import de.ysl3000.quantum.api.receiver.ValueNotChangedException;
 
 import java.util.Map;
 import java.util.Random;
@@ -27,7 +28,7 @@ public class RandomCircuit extends AbstractCircuit {
     }
 
     @Override
-    public void calculate(Receiver receiver,int oldCurrent, int newCurrent) {
+    public void calculate(Receiver receiver, int oldCurrent, int newCurrent) {
 
         if (newCurrent > 0 && oldCurrent == 0) {
             try {

@@ -1,11 +1,9 @@
 package de.ysl3000.quantumextension.receiver;
 
-import com.ne0nx3r0.quantum.api.IQuantumConnectorsAPI;
-import com.ne0nx3r0.quantum.api.QuantumConnectorsAPI;
-import com.ne0nx3r0.quantum.api.receiver.AbstractKeepAliveReceiver;
-import com.ne0nx3r0.quantum.api.receiver.ReceiverNotValidException;
-import com.ne0nx3r0.quantum.api.receiver.ValueNotChangedException;
-import com.ne0nx3r0.quantum.api.util.ValidMaterials;
+import de.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
+import de.ysl3000.quantum.api.receiver.ReceiverNotValidException;
+import de.ysl3000.quantum.api.receiver.ValueNotChangedException;
+import de.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
@@ -15,8 +13,6 @@ import java.util.Map;
 
 public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
 
-
-    private IQuantumConnectorsAPI api = QuantumConnectorsAPI.getAPI();
 
     /**
      * only use to getValidMaterials
