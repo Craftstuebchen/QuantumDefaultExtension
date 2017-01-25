@@ -1,8 +1,7 @@
 package de.ysl3000.quantumextension.receiver;
 
 import com.ne0nx3r0.quantum.api.receiver.AbstractKeepAliveReceiver;
-import com.ne0nx3r0.quantum.impl.nmswrapper.QSWorld;
-import com.ne0nx3r0.quantum.impl.utils.ValidMaterials;
+import com.ne0nx3r0.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -69,9 +68,9 @@ public class PistonReceiver extends AbstractKeepAliveReceiver {
         } else {
             behindPiston.getState().setData(new MaterialData(Material.REDSTONE_BLOCK));
             keepAlives.add(location.getBlock());
-            QSWorld.instance.setStatic(location.getWorld(), true);
+            api.setStatic(location.getWorld(), true);
             behindPiston.getState().setData(tempData);
-            QSWorld.instance.setStatic(location.getWorld(), false);
+            api.setStatic(location.getWorld(), false);
         }
     }
 

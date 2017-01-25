@@ -12,9 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Yannick on 22.01.2017.
- */
 public class ComperatorReceiver extends AbstractKeepAliveReceiver {
 
     /**

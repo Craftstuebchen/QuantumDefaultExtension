@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>com.ne0nx3r0.quantum</groupId>
-            <artifactId>QuantumConnectors</artifactId>
+            <artifactId>QuantumAPI</artifactId>
             <version>3.0</version>
             <scope>provided</scope>
         </dependency>

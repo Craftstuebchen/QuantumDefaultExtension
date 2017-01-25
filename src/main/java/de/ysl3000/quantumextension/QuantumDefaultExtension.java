@@ -2,6 +2,7 @@ package de.ysl3000.quantumextension;
 
 import com.ne0nx3r0.quantum.api.IQuantumConnectorsAPI;
 import com.ne0nx3r0.quantum.api.QuantumExtension;
+import de.ysl3000.quantumextension.circuit.*;
 import de.ysl3000.quantumextension.receiver.*;
 
 /**
@@ -20,6 +21,14 @@ public class QuantumDefaultExtension extends QuantumExtension {
                 RedstoneLampReceiver.class,
                 TrafficLightStateReceiver.class,
                 ComperatorReceiver.class);
+
+        this.api.getCircuitRegistry().register(this,
+                OffCircuit.class,
+                OnCircuit.class,
+                QuantumCircuit.class,
+                RandomCircuit.class,
+                ReverseCircuit.class,
+                ToggleCircuit.class);
     }
 
     public void onDisable() {

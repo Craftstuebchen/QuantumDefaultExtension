@@ -1,10 +1,11 @@
 package de.ysl3000.quantumextension.receiver;
 
+import com.ne0nx3r0.quantum.api.IQuantumConnectorsAPI;
+import com.ne0nx3r0.quantum.api.QuantumConnectorsAPI;
 import com.ne0nx3r0.quantum.api.receiver.AbstractReceiver;
 import com.ne0nx3r0.quantum.api.receiver.ReceiverNotValidException;
 import com.ne0nx3r0.quantum.api.receiver.ValueNotChangedException;
-import com.ne0nx3r0.quantum.impl.utils.SourceBlockUtil;
-import com.ne0nx3r0.quantum.impl.utils.ValidMaterials;
+import com.ne0nx3r0.quantum.api.util.ValidMaterials;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,6 +17,9 @@ import java.util.List;
 import java.util.Map;
 
 public class OpenableReceiver extends AbstractReceiver {
+
+    private IQuantumConnectorsAPI api = QuantumConnectorsAPI.getAPI();
+
     /**
      * only use to getValidMaterials
      */
@@ -59,11 +63,16 @@ public class OpenableReceiver extends AbstractReceiver {
 
     @Override
     public void calculateRealLocation() {
-        this.location = SourceBlockUtil.getSourceBlock(location);
+        this.location = api.getSourceBlock(location);
     }
 
     @Override
     public List<Material> getValidMaterials() {
         return ValidMaterials.OPENABLE;
+    }
+
+    @Override
+    public int getBlockCurrent() {
+        return isActive()?15:0;
     }
 }

@@ -1,10 +1,11 @@
 package de.ysl3000.quantumextension.receiver;
 
+import com.ne0nx3r0.quantum.api.IQuantumConnectorsAPI;
+import com.ne0nx3r0.quantum.api.QuantumConnectorsAPI;
 import com.ne0nx3r0.quantum.api.receiver.AbstractKeepAliveReceiver;
 import com.ne0nx3r0.quantum.api.receiver.ReceiverNotValidException;
 import com.ne0nx3r0.quantum.api.receiver.ValueNotChangedException;
-import com.ne0nx3r0.quantum.impl.nmswrapper.QSWorld;
-import com.ne0nx3r0.quantum.impl.utils.ValidMaterials;
+import com.ne0nx3r0.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
 
 
-    private QSWorld qsWorld = QSWorld.instance;
+    private IQuantumConnectorsAPI api = QuantumConnectorsAPI.getAPI();
 
     /**
      * only use to getValidMaterials
@@ -55,9 +56,9 @@ public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
         }
 
         if (powerOn) {
-            this.qsWorld.setStatic(location.getWorld(), true);
+            api.setStatic(location.getWorld(), true);
             location.getBlock().setType(Material.REDSTONE_LAMP_ON);
-            this.qsWorld.setStatic(location.getWorld(), false);
+            api.setStatic(location.getWorld(), false);
         } else {
             this.getLocation().getBlock().setType(Material.REDSTONE_LAMP_OFF);
         }
@@ -69,5 +70,8 @@ public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
         return this.location.getBlock().getType() == Material.REDSTONE_LAMP_ON || this.location.getBlock().getType() == Material.REDSTONE_LAMP_OFF;
     }
 
-
+    @Override
+    public int getBlockCurrent() {
+        return isActive()?15:0;
+    }
 }

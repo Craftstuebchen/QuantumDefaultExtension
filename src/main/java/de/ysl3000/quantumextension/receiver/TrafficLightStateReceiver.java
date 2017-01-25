@@ -4,7 +4,6 @@ import com.ne0nx3r0.quantum.api.receiver.AbstractStateReceiver;
 import com.ne0nx3r0.quantum.api.receiver.ReceiverNotValidException;
 import com.ne0nx3r0.quantum.api.receiver.ReceiverState;
 import com.ne0nx3r0.quantum.api.receiver.ValueNotChangedException;
-import com.ne0nx3r0.quantum.impl.utils.VariantWrapper;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -54,12 +53,12 @@ public class TrafficLightStateReceiver extends AbstractStateReceiver {
 
     @Override
     public ReceiverState getState() {
-        return VariantWrapper.getState(location.getBlock());
+        return api.getState(location.getBlock());
     }
 
     @Override
     public void setState(ReceiverState state) {
-        VariantWrapper.setState(location.getBlock(), state);
+        api.setState(location.getBlock(), state);
     }
 
     @Override
@@ -71,4 +70,5 @@ public class TrafficLightStateReceiver extends AbstractStateReceiver {
     public Map<String, Object> serialize() {
         return super.serialize();
     }
+
 }
