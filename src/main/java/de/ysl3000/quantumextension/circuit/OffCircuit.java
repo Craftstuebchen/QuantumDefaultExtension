@@ -13,7 +13,11 @@ import java.util.UUID;
  */
 public class OffCircuit extends AbstractCircuit {
 
-    public OffCircuit(UUID playerUUID, int delay) {
+    public OffCircuit() {
+        super();
+    }
+
+    public OffCircuit(UUID playerUUID, Integer delay) {
         super(playerUUID, delay);
     }
 

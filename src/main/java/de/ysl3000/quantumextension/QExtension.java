@@ -8,7 +8,7 @@ import de.ysl3000.quantumextension.receiver.*;
 /**
  * Created by Yannick on 24.01.2017.
  */
-public class QuantumDefaultExtension extends QuantumExtension {
+public class QExtension extends QuantumExtension {
     private IQuantumConnectorsAPI api;
 
     public void onEnable(IQuantumConnectorsAPI api) {

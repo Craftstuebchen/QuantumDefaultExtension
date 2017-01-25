@@ -12,7 +12,12 @@ import java.util.UUID;
  * Created by Yannick on 25.01.2017.
  */
 public class ToggleCircuit extends AbstractCircuit {
-    public ToggleCircuit(UUID playerUUID, int delay) {
+
+    public ToggleCircuit() {
+        super();
+    }
+
+    public ToggleCircuit(UUID playerUUID, Integer delay) {
         super(playerUUID, delay);
     }
 

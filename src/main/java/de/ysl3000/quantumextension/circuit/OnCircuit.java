@@ -12,7 +12,11 @@ import java.util.UUID;
  * Created by Yannick on 25.01.2017.
  */
 public class OnCircuit extends AbstractCircuit {
-    public OnCircuit(UUID playerUUID, int delay) {
+    public OnCircuit() {
+        super();
+    }
+
+    public OnCircuit(UUID playerUUID, Integer delay) {
         super(playerUUID, delay);
     }
 

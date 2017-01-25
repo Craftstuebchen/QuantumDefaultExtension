@@ -13,7 +13,12 @@ import java.util.UUID;
  * Created by Yannick on 25.01.2017.
  */
 public class RandomCircuit extends AbstractCircuit {
-    public RandomCircuit(UUID playerUUID, int delay) {
+
+    public RandomCircuit() {
+        super();
+    }
+
+    public RandomCircuit(UUID playerUUID, Integer delay) {
         super(playerUUID, delay);
     }
 

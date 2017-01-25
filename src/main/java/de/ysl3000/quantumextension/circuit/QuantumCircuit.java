@@ -12,7 +12,12 @@ import java.util.UUID;
  * Created by Yannick on 25.01.2017.
  */
 public class QuantumCircuit extends AbstractCircuit {
-    public QuantumCircuit(UUID playerUUID, int delay) {
+
+    public QuantumCircuit() {
+        super();
+    }
+
+    public QuantumCircuit(UUID playerUUID, Integer delay) {
         super(playerUUID, delay);
     }
 

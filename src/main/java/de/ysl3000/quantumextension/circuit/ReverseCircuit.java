@@ -12,7 +12,12 @@ import java.util.UUID;
  * Created by Yannick on 25.01.2017.
  */
 public class ReverseCircuit extends AbstractCircuit {
-    public ReverseCircuit(UUID playerUUID, int delay) {
+
+    public ReverseCircuit() {
+        super();
+    }
+
+    public ReverseCircuit(UUID playerUUID, Integer delay) {
         super(playerUUID, delay);
     }
 
