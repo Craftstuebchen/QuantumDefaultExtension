@@ -18,8 +18,6 @@ import java.util.Map;
 
 public class OpenableReceiver extends AbstractReceiver {
 
-    private IQuantumConnectorsAPI api = QuantumConnectorsAPI.getAPI();
-
     /**
      * only use to getValidMaterials
      */
