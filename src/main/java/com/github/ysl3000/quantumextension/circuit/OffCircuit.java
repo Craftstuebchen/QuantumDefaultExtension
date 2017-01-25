@@ -1,10 +1,10 @@
-package de.ysl3000.quantumextension.circuit;
+package com.github.ysl3000.quantumextension.circuit;
 
 
-import de.ysl3000.quantum.api.circuit.AbstractCircuit;
-import de.ysl3000.quantum.api.receiver.Receiver;
-import de.ysl3000.quantum.api.receiver.ReceiverNotValidException;
-import de.ysl3000.quantum.api.receiver.ValueNotChangedException;
+import com.github.ysl3000.quantum.api.circuit.AbstractCircuit;
+import com.github.ysl3000.quantum.api.receiver.Receiver;
+import com.github.ysl3000.quantum.api.receiver.ReceiverNotValidException;
+import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
 
 import java.util.Map;
 import java.util.UUID;

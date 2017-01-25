@@ -1,9 +1,9 @@
-package de.ysl3000.quantumextension.receiver;
+package com.github.ysl3000.quantumextension.receiver;
 
-import de.ysl3000.quantum.api.receiver.AbstractReceiver;
-import de.ysl3000.quantum.api.receiver.ReceiverNotValidException;
-import de.ysl3000.quantum.api.receiver.ValueNotChangedException;
-import de.ysl3000.quantum.api.util.ValidMaterials;
+import com.github.ysl3000.quantum.api.receiver.AbstractReceiver;
+import com.github.ysl3000.quantum.api.receiver.ReceiverNotValidException;
+import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
+import com.github.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
