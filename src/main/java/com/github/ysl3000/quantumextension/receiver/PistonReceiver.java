@@ -4,10 +4,8 @@ import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
 import com.github.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.material.MaterialData;
-import org.bukkit.material.PistonBaseMaterial;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Piston;
 
 import java.util.List;
 import java.util.Map;
@@ -40,42 +38,30 @@ public class PistonReceiver extends AbstractKeepAliveReceiver {
 
     @Override
     public boolean isActive() {
-        return ((PistonBaseMaterial) location.getBlock().getState().getData()).isPowered();
+
+        BlockData blockData = location.getBlock().getBlockData();
+
+        if (blockData instanceof Piston) {
+            return ((Piston) blockData).isExtended();
+        }
+
+        return false;
     }
 
     @Override
     public void setActive(boolean powerOn) {
 
-
         if (!isValid()) return;
-        if (isActive() == powerOn) return;
 
+        BlockData blockData = location.getBlock().getBlockData();
 
-        BlockState state = location.getBlock().getState();
-        MaterialData data = state.getData();
-
-
-        PistonBaseMaterial pistonBaseMaterial = (PistonBaseMaterial) data;
-
-        Block behindPiston = location.getBlock().getRelative(pistonBaseMaterial.getFacing().getOppositeFace());
-
-        MaterialData tempData = behindPiston.getState().getData();
-
-
-        if (isActive() && !powerOn) {
-            keepAlives.remove(location.getBlock());
-            location.getBlock().getState().update(true);
-        } else {
-            behindPiston.getState().setData(new MaterialData(Material.REDSTONE_BLOCK));
-            keepAlives.add(location.getBlock());
-            api.setStatic(location.getWorld(), true);
-            behindPiston.getState().setData(tempData);
-            api.setStatic(location.getWorld(), false);
+        if (blockData instanceof Piston) {
+            ((Piston) blockData).setExtended(powerOn);
         }
     }
 
     @Override
     public boolean isValid() {
-        return location.getBlock().getState().getData() instanceof PistonBaseMaterial;
+        return location.getBlock().getBlockData() instanceof Piston;
     }
 }

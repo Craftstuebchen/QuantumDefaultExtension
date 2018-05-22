@@ -1,14 +1,12 @@
 package com.github.ysl3000.quantumextension.receiver;
 
 import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
-import com.github.ysl3000.quantum.api.receiver.ReceiverNotValidException;
-import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.BlockState;
-import org.bukkit.material.Comparator;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Powerable;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -36,29 +34,32 @@ public class ComperatorReceiver extends AbstractKeepAliveReceiver {
     @Override
     public boolean isActive() {
         if (!isValid()) return false;
-        BlockState blockState = location.getBlock().getState();
-        Comparator comparator = (Comparator) blockState.getData();
-        return comparator.isPowered();
+
+        BlockData blockData = location.getBlock().getBlockData();
+
+        if (blockData instanceof Powerable) {
+
+            Powerable powerable = (Powerable) blockData;
+            return powerable.isPowered();
+        }
+
+        return false;
     }
 
     @Override
     public void setActive(boolean powerOn) {
-        try {
-            super.setActive(powerOn);
-        } catch (ValueNotChangedException | ReceiverNotValidException e) {
-            return;
+
+        BlockData blockData = location.getBlock().getBlockData();
+
+        if (blockData instanceof Powerable) {
+
+            Powerable powerable = (Powerable) blockData;
+            powerable.setPowered(powerOn);
         }
-
-        BlockState blockState = location.getBlock().getState();
-        Comparator comparator = (Comparator) blockState.getData();
-        comparator = new Comparator(comparator.getFacing(), comparator.isSubtractionMode(), powerOn);
-        blockState.setData(comparator);
-        blockState.update();
-
     }
 
     @Override
     public List<Material> getValidMaterials() {
-        return Arrays.asList(Material.REDSTONE_COMPARATOR_OFF, Material.REDSTONE_COMPARATOR_ON);
+        return Collections.singletonList(Material.COMPARATOR);
     }
 }
