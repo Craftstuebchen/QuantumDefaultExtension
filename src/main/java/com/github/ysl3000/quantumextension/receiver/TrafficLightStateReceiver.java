@@ -4,18 +4,18 @@ import com.github.ysl3000.quantum.api.receiver.AbstractStateReceiver;
 import com.github.ysl3000.quantum.api.receiver.ReceiverNotValidException;
 import com.github.ysl3000.quantum.api.receiver.ReceiverState;
 import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
-import org.bukkit.DyeColor;
+import com.github.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class TrafficLightStateReceiver extends AbstractStateReceiver {
 
-    public static final ReceiverState ON = ReceiverState.getByDyeColor(DyeColor.GREEN);
-    public static final ReceiverState OF = ReceiverState.getByDyeColor(DyeColor.RED);
+    private static final ReceiverState ON = ReceiverState.getByWool(Material.GREEN_WOOL);
+    private static final ReceiverState OF = ReceiverState.getByWool(Material.RED_WOOL);
 
     /**
      * only use to getValidMaterials
@@ -43,6 +43,7 @@ public class TrafficLightStateReceiver extends AbstractStateReceiver {
 
     @Override
     public void setActive(boolean powerOn) {
+
         try {
             super.setActive(powerOn);
         } catch (ReceiverNotValidException | ValueNotChangedException e) {
@@ -63,7 +64,7 @@ public class TrafficLightStateReceiver extends AbstractStateReceiver {
 
     @Override
     public List<Material> getValidMaterials() {
-        return Arrays.asList(Material.WOOL, Material.WOOD);
+        return ValidMaterials.join(Tag.PLANKS.getValues(), Tag.WOOL.getValues());
     }
 
     @Override
