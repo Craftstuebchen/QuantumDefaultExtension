@@ -14,6 +14,7 @@ import java.util.Map;
 
 public class TrafficLightStateReceiver extends AbstractStateReceiver {
 
+
     private static final ReceiverState ON = ReceiverState.getByWool(Material.GREEN_WOOL);
     private static final ReceiverState OF = ReceiverState.getByWool(Material.RED_WOOL);
 
