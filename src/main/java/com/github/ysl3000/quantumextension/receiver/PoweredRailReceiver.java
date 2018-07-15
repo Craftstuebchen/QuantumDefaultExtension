@@ -3,13 +3,13 @@ package com.github.ysl3000.quantumextension.receiver;
 import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
 import com.github.ysl3000.quantum.api.receiver.ReceiverNotValidException;
 import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
-import com.github.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.material.PoweredRail;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 
 public class PoweredRailReceiver extends AbstractKeepAliveReceiver {
@@ -33,8 +33,8 @@ public class PoweredRailReceiver extends AbstractKeepAliveReceiver {
     }
 
     @Override
-    public List<Material> getValidMaterials() {
-        return ValidMaterials.RAIL;
+    public Collection<Material> getValidMaterials() {
+        return Arrays.asList(Material.POWERED_RAIL, Material.ACTIVATOR_RAIL, Material.DETECTOR_RAIL);
     }
 
     @Override
@@ -65,6 +65,6 @@ public class PoweredRailReceiver extends AbstractKeepAliveReceiver {
 
     @Override
     public int getBlockCurrent() {
-        return isActive()?15:0;
+        return isActive() ? 15 : 0;
     }
 }

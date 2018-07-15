@@ -1,17 +1,18 @@
 package com.github.ysl3000.quantumextension.receiver;
 
 import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
-import com.github.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Lightable;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 
 public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
+
 
 
     /**
@@ -34,8 +35,8 @@ public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
     }
 
     @Override
-    public List<Material> getValidMaterials() {
-        return ValidMaterials.LAMP;
+    public Collection<Material> getValidMaterials() {
+        return Collections.singletonList(Material.REDSTONE_LAMP);
     }
 
     @Override

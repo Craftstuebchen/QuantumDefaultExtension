@@ -1,13 +1,13 @@
 package com.github.ysl3000.quantumextension.receiver;
 
 import com.github.ysl3000.quantum.api.receiver.AbstractReceiver;
-import com.github.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.block.data.BlockData;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 public class OpenableReceiver extends AbstractReceiver {
@@ -37,8 +37,8 @@ public class OpenableReceiver extends AbstractReceiver {
     }
 
     @Override
-    public List<Material> getValidMaterials() {
-        return ValidMaterials.OPENABLE;
+    public Collection<Material> getValidMaterials() {
+        return Tag.DOORS.getValues();
     }    @Override
     public boolean isActive() {
         BlockData blockData = location.getBlock().getBlockData();

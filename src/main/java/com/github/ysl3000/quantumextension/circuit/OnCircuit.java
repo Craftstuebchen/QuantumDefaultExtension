@@ -31,9 +31,7 @@ public class OnCircuit extends AbstractCircuit {
             if (newCurrent > 0 && oldCurrent == 0) {
                 receiver.setActive(true);
             }
-        } catch (ValueNotChangedException e) {
-            e.printStackTrace();
-        } catch (ReceiverNotValidException e) {
+        } catch (ValueNotChangedException | ReceiverNotValidException e) {
             e.printStackTrace();
         }
     }

@@ -1,13 +1,13 @@
 package com.github.ysl3000.quantumextension.receiver;
 
 import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
-import com.github.ysl3000.quantum.api.util.ValidMaterials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Piston;
 
-import java.util.List;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 
 
@@ -32,8 +32,8 @@ public class PistonReceiver extends AbstractKeepAliveReceiver {
     }
 
     @Override
-    public List<Material> getValidMaterials() {
-        return ValidMaterials.PISTON;
+    public Collection<Material> getValidMaterials() {
+        return Arrays.asList(Material.PISTON,Material.STICKY_PISTON);
     }
 
     @Override

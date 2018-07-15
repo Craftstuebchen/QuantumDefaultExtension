@@ -30,9 +30,7 @@ public class QuantumCircuit extends AbstractCircuit {
     public void calculate(Receiver receiver, int oldCurrent, int newCurrent) {
         try {
             receiver.setActive(newCurrent >0);
-        } catch (ValueNotChangedException e) {
-            e.printStackTrace();
-        } catch (ReceiverNotValidException e) {
+        } catch (ValueNotChangedException | ReceiverNotValidException e) {
             e.printStackTrace();
         }
     }

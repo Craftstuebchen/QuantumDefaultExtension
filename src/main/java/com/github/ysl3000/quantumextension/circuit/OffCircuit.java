@@ -32,9 +32,7 @@ public class OffCircuit extends AbstractCircuit {
             if (newCurrent == 0 && oldCurrent > 0) {
                 receiver.setActive(false);
             }
-        } catch (ValueNotChangedException e) {
-            e.printStackTrace();
-        } catch (ReceiverNotValidException e) {
+        } catch (ValueNotChangedException | ReceiverNotValidException e) {
             e.printStackTrace();
         }
     }
