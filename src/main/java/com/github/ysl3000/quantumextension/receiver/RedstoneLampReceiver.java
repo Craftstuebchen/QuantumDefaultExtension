@@ -65,12 +65,8 @@ public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
     @Override
     public void setActive(boolean powerOn) {
 
-        BlockData block = this.location.getBlock().getBlockData();
+        if(!isValid())return;
 
-        if (block instanceof Lightable) {
-            Lightable lightable = (Lightable) block;
-            lightable.setLit(powerOn);
-        }
-
+        setBlockData(location.getBlock(),Lightable.class,lightable -> lightable.setLit(powerOn));
     }
 }

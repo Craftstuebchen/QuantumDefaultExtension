@@ -5,7 +5,7 @@ import com.github.ysl3000.quantum.api.receiver.ReceiverNotValidException;
 import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.BlockState;
+import org.bukkit.block.data.Powerable;
 import org.bukkit.material.PoweredRail;
 
 import java.util.Arrays;
@@ -44,18 +44,16 @@ public class PoweredRailReceiver extends AbstractKeepAliveReceiver {
 
     @Override
     public void setActive(boolean powerOn) {
+
+        if(!isValid())return;
+
         try {
             super.setActive(powerOn);
         } catch (ReceiverNotValidException | ValueNotChangedException e) {
             return;
         }
 
-        BlockState state = location.getBlock().getState();
-        PoweredRail poweredRail = (PoweredRail) state.getData();
-        poweredRail.setPowered(powerOn);
-        state.setData(poweredRail);
-        state.update();
-
+        setBlockData(location.getBlock(), Powerable.class,powerable -> powerable.setPowered(powerOn),true);
     }
 
     @Override

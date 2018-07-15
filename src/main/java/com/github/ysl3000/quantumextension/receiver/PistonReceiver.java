@@ -53,11 +53,7 @@ public class PistonReceiver extends AbstractKeepAliveReceiver {
 
         if (!isValid()) return;
 
-        BlockData blockData = location.getBlock().getBlockData();
-
-        if (blockData instanceof Piston) {
-            ((Piston) blockData).setExtended(powerOn);
-        }
+        setBlockData(location.getBlock(),Piston.class,pistonData -> pistonData.setExtended(true));
     }
 
     @Override

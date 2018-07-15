@@ -49,13 +49,9 @@ public class ComperatorReceiver extends AbstractKeepAliveReceiver {
     @Override
     public void setActive(boolean powerOn) {
 
-        BlockData blockData = location.getBlock().getBlockData();
+        if (!isValid()) return;
 
-        if (blockData instanceof Powerable) {
-
-            Powerable powerable = (Powerable) blockData;
-            powerable.setPowered(powerOn);
-        }
+        setBlockData(location.getBlock(), Powerable.class, powerable -> powerable.setPowered(powerOn));
     }
 
     @Override

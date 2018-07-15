@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Openable;
 
 import java.util.Collection;
 import java.util.Map;
@@ -39,8 +40,11 @@ public class OpenableReceiver extends AbstractReceiver {
     @Override
     public Collection<Material> getValidMaterials() {
         return Tag.DOORS.getValues();
-    }    @Override
+    }
+
+    @Override
     public boolean isActive() {
+
         BlockData blockData = location.getBlock().getBlockData();
 
         if (blockData instanceof org.bukkit.block.data.Openable) {
@@ -52,16 +56,15 @@ public class OpenableReceiver extends AbstractReceiver {
     }
 
 
-
     @Override
     public void setActive(boolean powerOn) {
 
-        BlockData blockData = location.getBlock().getBlockData();
+        if (!isValid()) return;
 
-        if (blockData instanceof org.bukkit.block.data.Openable) {
-            ((org.bukkit.block.data.Openable) blockData).setOpen(powerOn);
+        setBlockData(location.getBlock(), Openable.class, openable -> {
+            openable.setOpen(powerOn);
             location.getWorld().playEffect(location, Effect.DOOR_TOGGLE, 0, 10);
-        }
+        });
     }
 
 
