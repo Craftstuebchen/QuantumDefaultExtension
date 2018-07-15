@@ -3,7 +3,6 @@ package com.github.ysl3000.quantumextension.receiver;
 import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Piston;
 
 import java.util.Arrays;
@@ -33,27 +32,17 @@ public class PistonReceiver extends AbstractKeepAliveReceiver {
 
     @Override
     public Collection<Material> getValidMaterials() {
-        return Arrays.asList(Material.PISTON,Material.STICKY_PISTON);
+        return Arrays.asList(Material.PISTON, Material.STICKY_PISTON);
     }
 
     @Override
     public boolean isActive() {
-
-        BlockData blockData = location.getBlock().getBlockData();
-
-        if (blockData instanceof Piston) {
-            return ((Piston) blockData).isExtended();
-        }
-
-        return false;
+        return isActive(location.getBlock(), Piston.class, Piston::isExtended);
     }
 
     @Override
     public void setActive(boolean powerOn) {
-
-        if (!isValid()) return;
-
-        setBlockData(location.getBlock(),Piston.class,pistonData -> pistonData.setExtended(true));
+        setActive(location.getBlock(), Piston.class, pistonData -> pistonData.setExtended(powerOn));
     }
 
     @Override

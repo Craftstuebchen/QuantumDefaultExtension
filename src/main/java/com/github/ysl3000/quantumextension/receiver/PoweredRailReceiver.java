@@ -39,13 +39,11 @@ public class PoweredRailReceiver extends AbstractKeepAliveReceiver {
 
     @Override
     public boolean isActive() {
-        return ((PoweredRail) location.getBlock().getState().getData()).isPowered();
+        return isActive(location.getBlock(), Powerable.class, Powerable::isPowered);
     }
 
     @Override
     public void setActive(boolean powerOn) {
-
-        if(!isValid())return;
 
         try {
             super.setActive(powerOn);
@@ -53,7 +51,7 @@ public class PoweredRailReceiver extends AbstractKeepAliveReceiver {
             return;
         }
 
-        setBlockData(location.getBlock(), Powerable.class,powerable -> powerable.setPowered(powerOn),true);
+        setActive(location.getBlock(), Powerable.class, powerable -> powerable.setPowered(powerOn), true);
     }
 
     @Override

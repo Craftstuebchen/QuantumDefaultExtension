@@ -3,7 +3,6 @@ package com.github.ysl3000.quantumextension.receiver;
 import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Lightable;
 
 import java.util.Collection;
@@ -12,7 +11,6 @@ import java.util.Map;
 
 
 public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
-
 
 
     /**
@@ -51,22 +49,11 @@ public class RedstoneLampReceiver extends AbstractKeepAliveReceiver {
 
     @Override
     public boolean isActive() {
-
-        BlockData block = this.location.getBlock().getBlockData();
-
-        if (block instanceof Lightable) {
-            Lightable lightable = (Lightable) block;
-            return lightable.isLit();
-        }
-
-        return false;
+        return isActive(location.getBlock(), Lightable.class, Lightable::isLit);
     }
 
     @Override
     public void setActive(boolean powerOn) {
-
-        if(!isValid())return;
-
-        setBlockData(location.getBlock(),Lightable.class,lightable -> lightable.setLit(powerOn));
+        setActive(location.getBlock(), Lightable.class, lightable -> lightable.setLit(powerOn));
     }
 }

@@ -1,12 +1,10 @@
 package com.github.ysl3000.quantumextension.receiver;
 
 import com.github.ysl3000.quantum.api.receiver.AbstractReceiver;
-import com.github.ysl3000.quantum.api.receiver.ReceiverNotValidException;
-import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.BlockState;
-import org.bukkit.material.Lever;
+import org.bukkit.block.data.Powerable;
+import org.bukkit.block.data.type.Switch;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -39,21 +37,12 @@ public class LeverReceiver extends AbstractReceiver {
 
     @Override
     public boolean isActive() {
-        return ((Lever) location.getBlock().getState().getData()).isPowered();
+        return isActive(location.getBlock(),Switch.class, Powerable::isPowered);
     }
 
     @Override
     public void setActive(boolean powerOn) {
-        try {
-            super.setActive(powerOn);
-        } catch (ReceiverNotValidException | ValueNotChangedException e) {
-            return;
-        }
-        BlockState state = location.getBlock().getState();
-        Lever lever = (Lever) state.getData();
-        lever.setPowered(powerOn);
-        state.setData(lever);
-        state.update();
+        setActive(location.getBlock(), Switch.class, aSwitch -> aSwitch.setPowered(powerOn));
     }
 
     @Override

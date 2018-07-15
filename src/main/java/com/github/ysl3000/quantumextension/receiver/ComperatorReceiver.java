@@ -3,7 +3,6 @@ package com.github.ysl3000.quantumextension.receiver;
 import com.github.ysl3000.quantum.api.receiver.AbstractKeepAliveReceiver;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Powerable;
 
 import java.util.Collections;
@@ -33,25 +32,12 @@ public class ComperatorReceiver extends AbstractKeepAliveReceiver {
 
     @Override
     public boolean isActive() {
-        if (!isValid()) return false;
-
-        BlockData blockData = location.getBlock().getBlockData();
-
-        if (blockData instanceof Powerable) {
-
-            Powerable powerable = (Powerable) blockData;
-            return powerable.isPowered();
-        }
-
-        return false;
+        return isActive(location.getBlock(),Powerable.class,Powerable::isPowered);
     }
 
     @Override
     public void setActive(boolean powerOn) {
-
-        if (!isValid()) return;
-
-        setBlockData(location.getBlock(), Powerable.class, powerable -> powerable.setPowered(powerOn));
+        setActive(location.getBlock(), Powerable.class, powerable -> powerable.setPowered(powerOn));
     }
 
     @Override
