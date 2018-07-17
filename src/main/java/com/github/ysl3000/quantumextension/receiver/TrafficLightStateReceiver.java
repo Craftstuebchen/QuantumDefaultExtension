@@ -7,6 +7,7 @@ import com.github.ysl3000.quantum.api.receiver.ValueNotChangedException;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Tag;
+import org.bukkit.block.BlockState;
 
 import java.util.Collection;
 import java.util.Map;
@@ -15,7 +16,7 @@ public class TrafficLightStateReceiver extends AbstractStateReceiver {
 
 
     private static final ReceiverState ON = ReceiverState.getByWool(Material.GREEN_WOOL);
-    private static final ReceiverState OF = ReceiverState.getByWool(Material.RED_WOOL);
+    private static final ReceiverState OFF = ReceiverState.getByWool(Material.RED_WOOL);
 
     /**
      * only use to getValidMaterials
@@ -44,15 +45,13 @@ public class TrafficLightStateReceiver extends AbstractStateReceiver {
     @Override
     public void setActive(boolean powerOn) {
 
-        //todo check if needed in 1.13
+
         try {
             super.setActive(powerOn);
         } catch (ReceiverNotValidException | ValueNotChangedException e) {
             return;
         }
-
-        //location.getBlock().setType(powerOn?ON.wool:OF.wool);
-        setState(powerOn ? ON : OF);
+        setState(location.getBlock(), BlockState.class, blockState -> blockState.setType(powerOn ? ON.wool : OFF.wool));
     }
 
     @Override
